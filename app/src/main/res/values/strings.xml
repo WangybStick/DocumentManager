@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DocumentManager</string>
+    <string name=""></string>
+    <string name="classify_picture">classify_picture</string>
+    <string name="classify_video">classify_video</string>
+    <string name="classify_audio">classify_audio</string>
+    <string name="classify_document">classify_document</string>
+    <string name="classify_download">classify_download</string>
+    <string name="classify_android">classify_android</string>
+    <string name="toolBarTitle">文件管理器</string>
+</resources>

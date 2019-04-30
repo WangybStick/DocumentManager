@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDark"></View>
+
+    <!--最近图片展示-->
+    <LinearLayout
+        android:id="@+id/recent_image_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="最近图片"/>
+        
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:id="@+id/recent_first_image_view"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:src="@drawable/ic_apple"
+                android:layout_height="100dp" />
+
+            <ImageView
+                android:id="@+id/recent_second_image_view"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:src="@drawable/ic_apple"
+                android:layout_height="100dp" />
+
+            <ImageView
+                android:id="@+id/recent_third_image_view"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:src="@drawable/ic_apple"
+                android:layout_height="100dp" />
+
+            <ImageView
+                android:id="@+id/recent_fourth_image_view"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:src="@drawable/ic_apple"
+                android:layout_height="100dp" />
+
+        </LinearLayout>
+        
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDark"></View>
+
+    <!--分类功能模块展示-->
+    <TextView
+        android:text="分类"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/classify_picture_layout"
+            android:layout_marginLeft="30dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:src="@drawable/classify_picture"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp" />
+            
+            <TextView
+                android:text="图片"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/classify_video_layout"
+            android:layout_marginLeft="30dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp">
+            
+            <ImageView
+                android:src="@drawable/classify_video"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp" />
+            
+            <TextView
+                android:text="音频"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/classify_audio_layout"
+            android:layout_marginLeft="30dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:src="@drawable/classify_audio"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp" />
+
+            <TextView
+                android:text="视频"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/classify_document_layout"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:src="@drawable/classify_document"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp" />
+
+            <TextView
+                android:text="文档"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/classify_download_layout"
+            android:layout_marginLeft="30dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:src="@drawable/classify_download"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp" />
+
+            <TextView
+                android:text="下载文件"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/classify_android_layout"
+            android:layout_marginLeft="30dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp">
+            <ImageView
+                android:src="@drawable/classify_android"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp" />
+            <TextView
+                android:text="APK"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDark"></View>
+
+    <!--手机存储功能模块展示-->
+    <TextView
+        android:text="手机"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <LinearLayout
+        android:id="@+id/phoneStorage_layout"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:src="@drawable/ic_phone"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="50dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="50dp">
+
+            <TextView
+                android:text="内部存储"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+            <TextView
+                android:id="@+id/phoneStorage_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
