@@ -30,8 +30,8 @@
         android:layout_marginLeft="5dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@id/id_checked"
-        android:layout_toRightOf="@id/id_icon"
+        android:layout_toLeftOf="@id/fileList_recyclerView_checkBox"
+        android:layout_toRightOf="@id/fileList_recyclerView_imageView"
         android:gravity="center_vertical"
         android:text="TextView" />
 
