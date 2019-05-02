@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CommonActivity" />
+        <activity android:name=".CommonActivity"
+                  android:theme="@style/ThemeNoActionBar"/>
         <activity android:name=".RecentActivity" />
         <activity android:name=".PhoneStorageActivity"></activity>
     </application>

@@ -11,11 +11,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.provider.MediaStore;
-
 import com.thundersoft.app.documentmanager.R;
-import com.thundersoft.app.documentmanager.util.filePathHelper.FilePathHelper;
 import com.thundersoft.app.documentmanager.util.mimeTypeMatch.MimeTypeMatch;
-
 import java.io.File;
 
 public class FileBitmapHelperImpl implements FileBitmapHelper {

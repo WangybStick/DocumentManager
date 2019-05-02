@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">DocumentManager</string>
-    <string name=""></string>
     <string name="classify_picture">classify_picture</string>
     <string name="classify_video">classify_video</string>
     <string name="classify_audio">classify_audio</string>
