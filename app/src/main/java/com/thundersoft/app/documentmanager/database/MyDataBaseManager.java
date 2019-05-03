@@ -11,7 +11,7 @@ import java.util.List;
 public class MyDataBaseManager {
 
     private static final String PHONE_INTERNAL_STORAGE_ROOT_DIRECTORY = "/storage/emulated/0";
-    private static final String IMAGE_URI = "Image_Uri";
+   /* private static final String IMAGE_URI = "Image_Uri";
     private static final String IMAGE_NAME ="Image_Name";
     private static final String IMAGE = "Image";
     private static final String VIDEO_URI = "Video_Uri";
@@ -19,12 +19,12 @@ public class MyDataBaseManager {
     private static final String VIDEO = "Video";
     private static final String AUDIO_URI = "Audio_Uri";
     private static final String AUDIO_NAME = "Audio_Name";
-    private static final String AUDIO = "Audio";
+    private static final String AUDIO = "Audio";*/
     private static final String DOCUMENT_URI = "Document_Uri";
     private static final String DOCUMENT_NAME = "Document_name";
     private static final String DOCUMENT = "Document";
-    private static final String DOWNLOAD_URI = "DownLoad_Uri";
-    private static final String DOWNLOAD_NAME = "DownLoad_name";
+    private static final String DOWNLOAD_URI = "Download_Uri";
+    private static final String DOWNLOAD_NAME = "Download_name";
     private static final String DOWNLOAD = "Download";
     private static final String APK_URI = "Apk_Uri";
     private static final String APK_NAME = "Apk_Name";
@@ -34,12 +34,12 @@ public class MyDataBaseManager {
     private ContentValues mContentValues;
     private FilePathHelper mFilePathHelper;
     private Context mContext;
-    private List<String> mImagePathList;
+    /*private List<String> mImagePathList;
     private List<String> mImageNameList;
     private List<String> mVideoPathList;
     private List<String> mVideoNameList;
     private List<String> mAudioPathList;
-    private List<String> mAudioNameList;
+    private List<String> mAudioNameList;*/
     private List<String> mDocumentPathList;
     private List<String> mDocumentNameList;
     private List<String> mDownloadPathList;
@@ -47,7 +47,7 @@ public class MyDataBaseManager {
     private List<String> mApkPathList;
     private List<String> mApkNameList;
 
-    //得到一个可读写的数据库
+    //封装一个可读写的数据库
     public MyDataBaseManager(Context context) {
         mMyDatabaseHelper = new MyDatabaseHelper(context);
         mSQLiteDatabase = mMyDatabaseHelper.getWritableDatabase();
@@ -55,12 +55,17 @@ public class MyDataBaseManager {
         mContext = context;
     }
 
+    //得到一个可读写的数据库
+    public SQLiteDatabase getmSQLiteDatabase() {
+        return mSQLiteDatabase;
+    }
+
     //初始化数据库的六张表
     public boolean initMyDataBase() {
         mFilePathHelper = new FilePathHelperImpl();
         ((FilePathHelperImpl) mFilePathHelper).getAllSystemFileList(PHONE_INTERNAL_STORAGE_ROOT_DIRECTORY,
                 mContext);
-        mImagePathList = mFilePathHelper.getAllImagePath();
+        /*mImagePathList = mFilePathHelper.getAllImagePath();
         mImageNameList = mFilePathHelper.getAllImageName();
         for (int i = 0; i < mImagePathList.size(); i++) {
             insertImage(mImagePathList.get(i), mImageNameList.get(i));
@@ -74,7 +79,7 @@ public class MyDataBaseManager {
         mAudioNameList = mFilePathHelper.getAllAudioName();
         for (int i = 0; i < mAudioPathList.size(); i++) {
             insertAudio(mAudioPathList.get(i), mAudioNameList.get(i));
-        }
+        }*/
         mDocumentPathList = mFilePathHelper.getAllDocumentAbsolutePath();
         mDocumentNameList = mFilePathHelper.getAllDocumentName();
         for (int i = 0; i < mDocumentPathList.size(); i++) {
@@ -93,7 +98,7 @@ public class MyDataBaseManager {
         return true;
     }
 
-    //将手机内部存储卡数据库下的图片文件加入到数据库表
+    /*//将手机内部存储卡数据库下的图片文件加入到数据库表
     public boolean insertImage(String imageUri, String imageName) {
         mContentValues.put(IMAGE_URI, imageUri);
         mContentValues.put(IMAGE_NAME, imageName);
@@ -115,7 +120,7 @@ public class MyDataBaseManager {
         mContentValues.put(AUDIO_NAME, audioName);
         mSQLiteDatabase.insert(AUDIO, null, mContentValues);
         return true;
-    }
+    }*/
 
     //将手机内部存储根目录下的文档文件加入到数据库表
     public boolean insertDocument(String documentUri, String documentName) {

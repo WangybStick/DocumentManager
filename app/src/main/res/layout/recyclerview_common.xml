@@ -1,38 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:gravity="center"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:longClickable="true"
-    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical" >
 
     <ImageView
         android:id="@+id/fileList_recyclerView_imageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginRight="5dp"
-        />
-
-    <CheckBox
-        android:id="@+id/fileList_recyclerView_checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:visibility="invisible"
-        android:layout_alignParentRight="true" />
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="5dp" />
 
     <TextView
         android:id="@+id/fileList_recyclerView_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
         android:maxLines="1"
-        android:layout_marginLeft="5dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@id/fileList_recyclerView_checkBox"
-        android:layout_toRightOf="@id/fileList_recyclerView_imageView"
-        android:gravity="center_vertical"
-        android:text="TextView" />
+        android:gravity="center"
+        android:layout_marginLeft="5dp" />
 
-</RelativeLayout>
+</LinearLayout>

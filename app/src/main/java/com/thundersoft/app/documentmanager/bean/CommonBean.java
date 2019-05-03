@@ -9,13 +9,11 @@ public class CommonBean {
     private Bitmap mIcon;
     private String mFileName;
     private String mAbsolutePath;
-    private boolean mArrangementFlag;
 
-    public CommonBean(Bitmap icon, String fileName, String absolutePath, boolean arrangementFlag) {
+    public CommonBean(Bitmap icon, String fileName, String absolutePath) {
         this.mIcon = icon;
         this.mFileName = fileName;
         this.mAbsolutePath = absolutePath;
-        this.mArrangementFlag = arrangementFlag;
     }
 
     public Bitmap getmIcon() {
@@ -30,10 +28,6 @@ public class CommonBean {
         return mAbsolutePath;
     }
 
-    public boolean ismArrangementFlag() {
-        return mArrangementFlag;
-    }
-
     public void setmIcon(Bitmap mIcon) {
         this.mIcon = mIcon;
     }
@@ -46,7 +40,4 @@ public class CommonBean {
         this.mAbsolutePath = mAbsolutePath;
     }
 
-    public void setmArrangementFlag(boolean mArrangementFlag) {
-        this.mArrangementFlag = mArrangementFlag;
-    }
 }
