@@ -94,6 +94,9 @@ public class RecentActivity extends AppCompatActivity {
         //设置返回图标
         mRecentToolbar.setNavigationIcon(R.drawable.icon_back);
 
+        //设置标题
+        mRecentToolbar.setTitle("最近图片");
+
         //设置返回图片的点击事件
         mRecentToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
