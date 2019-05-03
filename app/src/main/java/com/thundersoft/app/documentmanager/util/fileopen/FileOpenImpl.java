@@ -99,15 +99,14 @@ public class FileOpenImpl implements FileOpen {
     }
 
     //Android获取一个用于打开图片文件的intent
-    public Intent getImageFileIntent( String param ) {
+    public Intent getImageFileIntent(String param ) {
 
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addCategory("android.intent.category.DEFAULT");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        File file = new File(param );
+        File file = new File(param);
         Uri uri = FileProvider.getUriForFile(mContext,mContext.getApplicationContext().getPackageName() + ".provider", file);
-        Log.d("uri",uri.toString());
         intent.setDataAndType(uri, "image/*");
         return intent;
     }

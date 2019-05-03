@@ -67,7 +67,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
-        if (!mArrangementFlag) {
+        if (mArrangementFlag) {
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_common,
                     viewGroup, false);
         }else {
@@ -86,6 +86,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
 
     @Override
     public int getItemCount() {
+        if (mList == null) return 0;
         return mList.size();
     }
 

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import com.thundersoft.app.documentmanager.util.filePathHelper.FilePathHelper;
 import com.thundersoft.app.documentmanager.util.filePathHelper.FilePathHelperImpl;
-
 import java.util.List;
 
 public class MyDataBaseManager {
@@ -127,6 +126,7 @@ public class MyDataBaseManager {
         mContentValues.put(DOCUMENT_URI, documentUri);
         mContentValues.put(DOCUMENT_NAME, documentName);
         mSQLiteDatabase.insert(DOCUMENT, null, mContentValues);
+        mContentValues.clear();
         return true;
     }
 
@@ -135,6 +135,7 @@ public class MyDataBaseManager {
         mContentValues.put(DOWNLOAD_URI, downLoadUri);
         mContentValues.put(DOWNLOAD_NAME, downLoadName);
         mSQLiteDatabase.insert(DOWNLOAD, null, mContentValues);
+        mContentValues.clear();
         return true;
     }
 
@@ -143,6 +144,7 @@ public class MyDataBaseManager {
         mContentValues.put(APK_URI, apkUri);
         mContentValues.put(APK_NAME, apkName);
         mSQLiteDatabase.insert(APK, null, mContentValues);
+        mContentValues.clear();
         return true;
     }
 

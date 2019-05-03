@@ -6,17 +6,14 @@ import java.util.List;
 
 public interface FilePathHelper {
 
-    //得到所有图片文件的路径和名称
-    List<String> getAllImagePath();
-    List<String> getAllImageName();
+    //得到所有图片文件的路径
+    List<String> getAllImagePath(Context context);
 
-    //得到所有音频文件的路径和名称
-    List<String> getAllVideoPath();
-    List<String> getAllVideoName();
+    //得到所有音频文件的路径
+    List<String> getAllVideoPath(Context context);
 
-    //得到所有视频文件的路径和名称
-    List<String> getAllAudioPath();
-    List<String> getAllAudioName();
+    //得到所有视频文件的路径
+    List<String> getAllAudioPath(Context context);
 
     //得到所有文档文件的路径和名称
     List<String> getAllDocumentAbsolutePath();

@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         mHandler = new Handler() {
-
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);

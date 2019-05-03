@@ -26,17 +26,17 @@ public class DataManipulateImpl implements DataManipulate {
 
     @Override
     public List<String> queryImagePath() {
-        return mFilePathHelper.getAllImagePath();
+        return mFilePathHelper.getAllImagePath(mContext);
     }
 
     @Override
     public List<String> queryVideoPath() {
-        return mFilePathHelper.getAllVideoPath();
+        return mFilePathHelper.getAllVideoPath(mContext);
     }
 
     @Override
     public List<String> queryAudioPath() {
-        return mFilePathHelper.getAllAudioPath();
+        return mFilePathHelper.getAllAudioPath(mContext);
     }
 
     @Override

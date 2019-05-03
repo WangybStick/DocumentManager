@@ -51,7 +51,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("drop table if exists Document");
+        db.execSQL("drop table if exists Download");
+        db.execSQL("drop table if exists Apk");
+        onCreate(db);
     }
 
 

@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,7 @@ import com.thundersoft.app.documentmanager.util.filemanipulate.FileManipulate;
 import com.thundersoft.app.documentmanager.util.filemanipulate.FileManipulateImpl;
 import com.thundersoft.app.documentmanager.util.fileopen.FileOpen;
 import com.thundersoft.app.documentmanager.util.fileopen.FileOpenImpl;
+import com.thundersoft.app.documentmanager.util.permission.RuntimePermissonVerify;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -60,11 +62,13 @@ public class CommonActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    initFileListRecyclerViewClick();
+                    //initFileListRecyclerViewClick();
+                    onStart();
                     break;
 
                 case 2:
-                    initFileListRecyclerViewClick();
+                    //initFileListRecyclerViewClick();
+                    onStart();
                     break;
             }
         }
@@ -80,6 +84,9 @@ public class CommonActivity extends AppCompatActivity {
 
         //初始化视图
         initView();
+
+        //获取运行时权限
+        RuntimePermissonVerify.verifyStoragePermission(this);
 
         //初始化FileListRecyclerView的数据
         initFileListRecyclerViewData();
@@ -135,12 +142,14 @@ public class CommonActivity extends AppCompatActivity {
     public void initView() {
         mCommonTextView = findViewById(R.id.common_path_textView);
         mFileListRecyclerView = findViewById(R.id.fileList_recyclerView);
+        Log.d("initView", "123");
     }
 
     //初始化FileListRecyclerView的数据
     public void initFileListRecyclerViewData() {
         Intent intent = getIntent();
         mIntentType = intent.getType();
+        Log.d("mIntentType", mIntentType);
         List<String> dataPathList = new ArrayList<>();
         mMyDataBaseManager = new MyDataBaseManager(CommonActivity.this);
         mSQLiteDatabase = mMyDataBaseManager.getmSQLiteDatabase();
@@ -163,7 +172,7 @@ public class CommonActivity extends AppCompatActivity {
             dataPathList=  mDataManipulate.queryDownloadPath();
         } else if (mIntentType.equals(getString(R.string.classify_android))) {
             mCommonTextView.setText("我的文件 > apk");
-            dataPathList=  mDataManipulate.queryApkPath();
+            dataPathList =  mDataManipulate.queryApkPath();
         }
         if (dataPathList.size() != 0) {
             String filePath = dataPathList.get(0);
@@ -175,6 +184,7 @@ public class CommonActivity extends AppCompatActivity {
                 File file = new File(dataPath);
                 String fileName = file.getName();
                 String absolutePath = file.getAbsolutePath();
+                Log.d("fileName", fileName);
                 mFileListRecyclerViewDataList.add(new CommonBean(icon, fileName, absolutePath));
             }
         }
@@ -300,5 +310,9 @@ public class CommonActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initFileListRecyclerViewClick();
+    }
 }

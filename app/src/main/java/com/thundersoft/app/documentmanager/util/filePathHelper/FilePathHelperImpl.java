@@ -56,33 +56,21 @@ public class FilePathHelperImpl implements FilePathHelper {
     }
 
     @Override
-    public List<String> getAllImagePath() {
+    public List<String> getAllImagePath(Context context) {
+        getImageList(context);
         return mImagePathList;
     }
 
     @Override
-    public List<String> getAllImageName() {
-        return mImageNameList;
-    }
-
-    @Override
-    public List<String> getAllVideoPath() {
+    public List<String> getAllVideoPath(Context context) {
+        getVideoList(context);
         return mVideoPathList;
     }
 
     @Override
-    public List<String> getAllVideoName() {
-        return mVideoNameList;
-    }
-
-    @Override
-    public List<String> getAllAudioPath() {
+    public List<String> getAllAudioPath(Context context) {
+        getAudioList(context);
         return mAudioPathList;
-    }
-
-    @Override
-    public List<String> getAllAudioName() {
-        return mAudioNameList;
     }
 
     @Override
