@@ -10,6 +10,10 @@ import java.util.List;
 
 public class FilePathHelperImpl implements FilePathHelper {
 
+    private final static int ONE_WEEK = 7;
+    private final static int ONE_MONTH = 30;
+    private final static int THREE_MONTH = 90;
+    private final static int ONE_YEAR = 365;
     private static final String SORT_ORDER_TIME_DESC = "date_modified DESC";
     private List<String> mImagePathList;
     private List<String> mImageNameList;
@@ -53,6 +57,46 @@ public class FilePathHelperImpl implements FilePathHelper {
         }
         cursorImage.close();
         return mRecentFourImagesList;
+    }
+
+    @Override
+    public List<String> getRecentImage(Context context, int recentTime) {
+        List<String> fileList = new ArrayList<>();
+        Cursor cursor = context.getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null,
+                null, SORT_ORDER_TIME_DESC);
+        while (cursor.moveToNext()) {
+            long fileTime = cursor.getLong(cursor.getColumnIndex(MediaStore.Images.Media.DATE_MODIFIED));
+            long currentTime = System.currentTimeMillis();
+            switch (recentTime) {
+                case ONE_WEEK:
+                    if (recentOneWeek(fileTime, currentTime)) {
+                        String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                        fileList.add(filePath);
+                    }
+                    break;
+                case ONE_MONTH:
+                    if (recentOneMonth(fileTime, currentTime)) {
+                        String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                        fileList.add(filePath);
+                    }
+                    break;
+                case THREE_MONTH:
+                    if (recentThreeMonth(fileTime, currentTime)) {
+                        String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                        fileList.add(filePath);
+                    }
+                    break;
+                case ONE_YEAR:
+                    if (recentOneYear(fileTime, currentTime)) {
+                        String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                        fileList.add(filePath);
+                    }
+                    break;
+            }
+        }
+        cursor.close();
+        return fileList;
     }
 
     @Override
@@ -142,8 +186,6 @@ public class FilePathHelperImpl implements FilePathHelper {
         cursorAudio.close();
     }
 
-
-
     //对文档文件，下载文件，apk文件进行查找并添加到相应的List列表中
     public void getAllSystemFileList(String path, Context context)
     {
@@ -181,4 +223,34 @@ public class FilePathHelperImpl implements FilePathHelper {
             }
         }
     }
+
+    public boolean recentOneWeek(long fileTime, long currentTime) {
+        if (((currentTime / 1000) - fileTime) / 86400 <= ONE_WEEK) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean recentOneMonth(long fileTime, long currentTime) {
+        if (((currentTime / 1000) - fileTime) / 86400 <= ONE_MONTH) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean recentThreeMonth(long fileTime, long currentTime) {
+        if (((currentTime / 1000) - fileTime) / 86400 <= THREE_MONTH) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean recentOneYear(long fileTime, long currentTime) {
+        if (((currentTime / 1000) - fileTime) / 86400 <= ONE_YEAR) {
+            return true;
+        }
+        return false;
+    }
+
+
 }

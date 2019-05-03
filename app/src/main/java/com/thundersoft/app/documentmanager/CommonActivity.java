@@ -142,14 +142,12 @@ public class CommonActivity extends AppCompatActivity {
     public void initView() {
         mCommonTextView = findViewById(R.id.common_path_textView);
         mFileListRecyclerView = findViewById(R.id.fileList_recyclerView);
-        Log.d("initView", "123");
     }
 
     //初始化FileListRecyclerView的数据
     public void initFileListRecyclerViewData() {
         Intent intent = getIntent();
         mIntentType = intent.getType();
-        Log.d("mIntentType", mIntentType);
         List<String> dataPathList = new ArrayList<>();
         mMyDataBaseManager = new MyDataBaseManager(CommonActivity.this);
         mSQLiteDatabase = mMyDataBaseManager.getmSQLiteDatabase();

@@ -34,7 +34,8 @@
 
         <activity android:name=".CommonActivity"
                   android:theme="@style/ThemeNoActionBar"/>
-        <activity android:name=".RecentActivity" />
+        <activity android:name=".RecentActivity"
+                  android:theme="@style/ThemeNoActionBar"/>
         <activity android:name=".PhoneStorageActivity"></activity>
     </application>
 

@@ -7,4 +7,8 @@
     <string name="classify_download">classify_download</string>
     <string name="classify_android">classify_android</string>
     <string name="toolBarTitle">文件管理器</string>
+    <string name="recent_week">最近一周</string>
+    <string name="recent_oneMonth">最近一个月</string>
+    <string name="recent_threeMonth">最近三个月</string>
+    <string name="recent_oneYear">最近一年</string>
 </resources>

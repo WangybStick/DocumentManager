@@ -30,6 +30,7 @@ public interface FilePathHelper {
     //得到最近的四张图片的路径
     List<String> getRecentFourImages(Context context);
 
-
+    //得到最近一定时间的图片
+    List<String> getRecentImage(Context context, int recentTime);
 
 }
