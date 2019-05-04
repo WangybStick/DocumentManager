@@ -9,10 +9,10 @@ public interface FilePathHelper {
     //得到所有图片文件的路径
     List<String> getAllImagePath(Context context);
 
-    //得到所有音频文件的路径
+    //得到所有视频文件的路径
     List<String> getAllVideoPath(Context context);
 
-    //得到所有视频文件的路径
+    //得到所有音频文件的路径
     List<String> getAllAudioPath(Context context);
 
     //得到所有文档文件的路径和名称

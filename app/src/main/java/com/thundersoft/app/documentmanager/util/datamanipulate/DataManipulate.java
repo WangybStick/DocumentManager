@@ -13,22 +13,22 @@ public interface DataManipulate {
     //从MediaStore数据库中修改图片名称
     void renameImageItemFromMediaStore(String imagePath, String newName);
 
-    //查找所有音频文件的路径
+    //查找所有视频文件的路径
     List<String> queryVideoPath();
 
-    //从MediaStore数据库中删除对应音频
+    //从MediaStore数据库中删除对应视频
     void deleteVideoItemFromMediaStore(String videoPath);
 
-    //从MediaStore数据库中修改音频名称
+    //从MediaStore数据库中修改视频名称
     void renameVideoItemFromMediaStore(String videoPath, String newName);
 
-    //查找所有视频文件的路径
+    //查找所有音频文件的路径
     List<String> queryAudioPath();
 
-    //从MediaStore数据库中删除对应视频
+    //从MediaStore数据库中删除对应音频
     void deleteAudioItemFromMediaStore(String audioPath);
 
-    //从MediaStore数据库中修改视频名称
+    //从MediaStore数据库中修改音频名称
     void renameAudioItemFromMediaStore(String audioPath, String newName);
 
     //查找所有文档文件的路径

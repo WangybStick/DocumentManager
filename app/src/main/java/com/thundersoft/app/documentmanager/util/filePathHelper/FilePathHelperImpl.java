@@ -160,7 +160,7 @@ public class FilePathHelperImpl implements FilePathHelper {
         cursorImage.close();
     }
 
-    //对音频文件进行查找并添加到对应的List列表中
+    //对视频文件进行查找并添加到对应的List列表中
     public void getVideoList(Context context) {
         Cursor cursorVideo= context.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
                 null, null, null, null);
@@ -173,7 +173,7 @@ public class FilePathHelperImpl implements FilePathHelper {
         cursorVideo.close();
     }
 
-    //对视频文件进行查找并添加到对应的List列表中
+    //对音频文件进行查找并添加到对应的List列表中
     public void getAudioList(Context context) {
         Cursor cursorAudio = context.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                 null, null, null, null);

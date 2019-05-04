@@ -158,10 +158,10 @@ public class CommonActivity extends AppCompatActivity {
             dataPathList = mDataManipulate.queryImagePath();
         } else if (mIntentType.equals(getString(R.string.classify_video))) {
             mCommonTextView.setText("我的文件 > 音频");
-            dataPathList = mDataManipulate.queryVideoPath();
+            dataPathList = mDataManipulate.queryAudioPath();
         } else if (mIntentType.equals(getString(R.string.classify_audio))) {
             mCommonTextView.setText("我的文件 > 视频");
-            dataPathList = mDataManipulate.queryAudioPath();
+            dataPathList = mDataManipulate.queryVideoPath();
         } else if (mIntentType.equals(getString(R.string.classify_document))) {
             mCommonTextView.setText("我的文件 > 文件");
             dataPathList=  mDataManipulate.queryDocumentPath();
