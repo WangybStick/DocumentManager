@@ -26,7 +26,7 @@ public class FileOpenImpl implements FileOpen {
         if(end.equals("m4a")||end.equals("mp3")||end.equals("mid")||
                 end.equals("xmf")||end.equals("ogg")||end.equals("wav")||end.equals("amr")){
             return getAudioFileIntent(filePath);
-        }else if(end.equals("3gp")||end.equals("mp4")){
+        }else if(end.equals("3gp")||end.equals("mp4")||end.equals("flv")){
             return getVideoFileIntent(filePath);
         }else if(end.equals("jpg")||end.equals("gif")||end.equals("png")||
                 end.equals("jpeg")||end.equals("bmp")){
