@@ -24,7 +24,7 @@ public class FileOpenImpl implements FileOpen {
         String end=file.getName().substring(file.getName().lastIndexOf(".") + 1,file.getName().length()).toLowerCase();
         /* 依扩展名的类型决定MimeType */
         if(end.equals("m4a")||end.equals("mp3")||end.equals("mid")||
-                end.equals("xmf")||end.equals("ogg")||end.equals("wav")){
+                end.equals("xmf")||end.equals("ogg")||end.equals("wav")||end.equals("amr")){
             return getAudioFileIntent(filePath);
         }else if(end.equals("3gp")||end.equals("mp4")){
             return getVideoFileIntent(filePath);
@@ -76,7 +76,7 @@ public class FileOpenImpl implements FileOpen {
     public Intent getVideoFileIntent( String param ) {
 
         Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra("oneshot", 0);
         intent.putExtra("configchange", 0);
         File file = new File(param );
@@ -89,7 +89,7 @@ public class FileOpenImpl implements FileOpen {
     public Intent getAudioFileIntent( String param ){
 
         Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra("oneshot", 0);
         intent.putExtra("configchange", 0);
         File file = new File(param );
