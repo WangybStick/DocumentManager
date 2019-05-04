@@ -17,32 +17,6 @@ public class FileManipulateImpl implements FileManipulate{
 
     public FileManipulateImpl() {}
 
-    public List<String> deleteFileList(List<String> filePathLists) {
-        List<String> filePathList = new ArrayList<String>();
-        for (String filePath : filePathLists) {
-            File file = new File(filePath);
-            if (file.exists()) {
-                try {
-                    if (file.isFile()) {
-                        file.delete();
-                    } else {
-                        File[] filesarr = file.listFiles();
-                        List<String> tempFilePathLists = new ArrayList<String>();
-                        for (File tempFile : filesarr) {
-                            tempFilePathLists.add(tempFile.getAbsolutePath());
-                        }
-                        deleteFileList(tempFilePathLists);
-                        file.delete();
-                    }
-                    filePathList.add(filePath);
-                } catch (Exception e) {
-                }
-            } else {
-            }
-        }
-        return filePathList;
-    }
-
     @Override
     public boolean deleteFile(String filePath) {
         File file = new File(filePath);
@@ -55,59 +29,6 @@ public class FileManipulateImpl implements FileManipulate{
             }
         }
         return false;
-    }
-
-    public List<String> copyFile(List<String> filePathLists, String newPath,
-                                        boolean isCopy) {
-        File newFile = new File(newPath);
-        File[] files = newFile.listFiles();
-        List<String> resultFilePathList = new ArrayList<String>();
-        for (File file : files) {
-            for (int i = 0; i < filePathLists.size(); i++) {
-                if (file.getName().equals(
-                        new File(filePathLists.get(i)).getName())) {
-                    filePathLists.remove(i);
-                    i--;
-                    break;
-                }
-            }
-        }
-        if (filePathLists.size() > 0) {
-            for (String filePath : filePathLists) {
-                File file = new File(filePath);
-                try {
-                    String path = newPath + "/" + file.getName();
-                    File tempFile = new File(path);
-                    if (file.isFile()) {
-                        InputStream inStream = new FileInputStream(file); // 读入原文件
-                        FileOutputStream fs = new FileOutputStream(tempFile);
-                        byte[] buffer = new byte[1024 * 4];
-                        int length;
-                        while ((length = inStream.read(buffer)) != -1) {
-                            fs.write(buffer, 0, length);
-                        }
-                        fs.close();
-                        inStream.close();
-                    } else {
-                        tempFile.mkdir();
-                        File[] oldFiles = file.listFiles();
-                        List<String> tempFilePathList = new ArrayList<String>();
-                        for (File oldFile : oldFiles) {
-                            tempFilePathList.add(oldFile.getAbsolutePath());
-
-                        }
-                        copyFile(tempFilePathList, tempFile.getAbsolutePath(),
-                                isCopy);
-                    }
-                    if (!isCopy) {
-                        file.delete();
-                    }
-                    resultFilePathList.add(path);
-                } catch (Exception e) {
-                }
-            }
-        }
-        return resultFilePathList;
     }
 
     public long getFileTime(String filePath) {
@@ -190,23 +111,6 @@ public class FileManipulateImpl implements FileManipulate{
         }
         resultList.add(dateTime + "");
         return resultList;
-    }
-
-    public boolean newFile(String parentPath, String fileName, boolean isFile) {
-        try {
-            File file = new File(parentPath + "/" + fileName);
-            if (!file.exists()) {
-                if (isFile) {
-                    file.createNewFile();
-                } else {
-                    file.mkdir();
-                }
-                return true;
-            }
-        } catch (Exception e) {
-
-        }
-        return false;
     }
 
     public void showFileAttribute(List<String> list,Context context) {

@@ -190,7 +190,7 @@ public class CommonActivity extends AppCompatActivity {
 
     //初始化FileListRecyclerView以及点击事件
     public void initFileListRecyclerViewClick() {
-        if (!mArrangementFlag) {
+        if (mArrangementFlag) {
             mRecyclerViewLayoutManager = new LinearLayoutManager(this);
             mFileListRecyclerView.setLayoutManager(mRecyclerViewLayoutManager);
         } else {
