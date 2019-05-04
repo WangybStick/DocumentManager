@@ -14,6 +14,13 @@
         app:popupTheme="@style/ToolBarPopupTheme">
     </android.support.v7.widget.Toolbar>
 
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDark"></View>
+
     <TextView
         android:id="@+id/recent_time_textView"
         android:layout_width="match_parent"
