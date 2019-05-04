@@ -196,7 +196,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         Intent commonIntent = new Intent(MainActivity.this, CommonActivity.class);
         Intent recentIntent = new Intent(MainActivity.this, RecentActivity.class);
-        Intent phoneStorageIntent = new Intent(MainActivity.this, PhoneStorageActivity.class);
         switch(view.getId()) {
             case R.id.recent_first_image_view:
                 startActivity(recentIntent);
@@ -242,10 +241,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.classify_android_layout:
                 commonIntent.setType(getString(R.string.classify_android));
                 startActivity(commonIntent);
-                break;
-
-            case R.id.phoneStorage_layout:
-                startActivity(phoneStorageIntent);
                 break;
 
         }

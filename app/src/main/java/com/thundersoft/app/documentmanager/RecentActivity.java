@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -167,6 +168,7 @@ public class RecentActivity extends AppCompatActivity {
             for (String dataPath : dataPathList) {
                 File file = new File(dataPath);
                 String fileName = file.getName();
+                Log.d("fileName", fileName);
                 String absolutePath = file.getAbsolutePath();
                 mFileListRecyclerViewDataList.add(new CommonBean(icon, fileName, absolutePath));
             }
@@ -176,6 +178,7 @@ public class RecentActivity extends AppCompatActivity {
     //初始化FileListRecyclerView以及点击事件
     public void initFileListRecyclerViewClick() {
         mRecyclerViewLayoutManager = new LinearLayoutManager(this);
+        mRecentImageRecyclerView.setLayoutManager(mRecyclerViewLayoutManager);
         mFileListAdapter = new FileListAdapter(RecentActivity.this,
                 mFileListRecyclerViewDataList, true);
         mFileListAdapter.setOnItemClickListener(new FileListAdapter.OnRecyclerViewItemClickListener() {
