@@ -68,10 +68,10 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
         if (mArrangementFlag) {
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_common,
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_common_grid,
                     viewGroup, false);
         }else {
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_common_grid,
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_common,
                     viewGroup, false);
         }
         ViewHolder viewHolder = new ViewHolder(view, mOnRecyclerViewItemClickListener, mOnRecyclerViewItemLongListener);

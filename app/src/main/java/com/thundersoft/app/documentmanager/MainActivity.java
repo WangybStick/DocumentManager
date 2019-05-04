@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //初始化视图的点击监听
         setOnclickListener();
 
-        //（后台AsyncTask线程）初始化图片，音频，视频，文档文件，下载文件，APK文件到自定义数据库
+        //（后台AsyncTask线程）初始化文档文件，下载文件，APK文件到自定义数据库
         mMyAsyncTask = new MyAsyncTask();
         mMyAsyncTask.execute();
 
