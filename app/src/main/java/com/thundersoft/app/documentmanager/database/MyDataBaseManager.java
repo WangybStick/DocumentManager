@@ -33,7 +33,7 @@ public class MyDataBaseManager {
 
     //封装一个可读写的数据库
     public MyDataBaseManager(Context context) {
-        mMyDatabaseHelper = new MyDatabaseHelper(context);
+        mMyDatabaseHelper = MyDatabaseHelper.getSingleton(context);
         mSQLiteDatabase = mMyDatabaseHelper.getWritableDatabase();
         mContentValues = new ContentValues();
         mContext = context;

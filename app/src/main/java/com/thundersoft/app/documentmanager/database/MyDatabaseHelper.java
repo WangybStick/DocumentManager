@@ -4,9 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-
 public class MyDatabaseHelper extends SQLiteOpenHelper {
+    private static MyDatabaseHelper singleton;
 
+    //数据库相关信息定义
     private static final String DB_Name = "myFile.db";
     private static final int version = 2;
     private static final String CREATE_DOCUMENT = "create table Document ("
@@ -22,16 +23,21 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             + "Apk_name text,"
             + "Apk_Uri text)";
 
-    public MyDatabaseHelper(Context context) {
-        //public SQLiteOpenHelper(Context context, String name, CusorFactory factory, int version)
+    private MyDatabaseHelper(Context context) {
         super(context, DB_Name, null, version);
+    }
+
+    public static MyDatabaseHelper getSingleton(Context context) {
+        if (singleton == null) {
+            singleton = new MyDatabaseHelper(context);
+            return singleton;
+        } else {
+            return singleton;
+        }
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /*db.execSQL(CREATE_IMAGE);
-        db.execSQL(CREATE_VIDEO);
-        db.execSQL(CREATE_AUDIO);*/
         db.execSQL(CREATE_DOCUMENT);
         db.execSQL(CREATE_DOWNLOAD);
         db.execSQL(CREATE_APK);
@@ -44,6 +50,5 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists Apk");
         onCreate(db);
     }
-
 
 }
