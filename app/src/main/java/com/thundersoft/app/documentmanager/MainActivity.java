@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout mClassifyAndroidLinearLayout;
     private TextView mPhoneStorageTextView;
     private PhoneStorageSD mPhoneStorageSD;
-    private MyDataBaseManager mMyDataBaseManager;
     private FilePathHelper mFilePathHelper;
     private List<String> mRecentFourImagesList;
     private Handler mHandler;
