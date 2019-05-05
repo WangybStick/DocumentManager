@@ -196,7 +196,7 @@ public class FilePathHelperImpl implements FilePathHelper {
     {
         if (path == null) return;
         File file = new File(path);
-        if(file.listFiles()!= null) {
+        if(file.listFiles() != null) {
             for(File files : file.listFiles()) {
                 if(files.isHidden()) {
                     continue;

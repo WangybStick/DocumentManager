@@ -8,11 +8,11 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.thundersoft.app.documentmanager.database.MyDataBaseManager;
 import com.thundersoft.app.documentmanager.util.filePathHelper.FilePathHelper;
 import com.thundersoft.app.documentmanager.util.filePathHelper.FilePathHelperImpl;
 import com.thundersoft.app.documentmanager.util.permission.RuntimePermissonVerify;
@@ -20,6 +20,7 @@ import com.thundersoft.app.documentmanager.util.phoneStorageSD.PhoneStorageSD;
 import com.thundersoft.app.documentmanager.util.phoneStorageSD.PhoneStorageSDImpl;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -63,10 +64,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 super.handleMessage(msg);
                 switch (msg.what) {
                     case 1:
+                        //long currentTime3 = System.currentTimeMillis();
+                        //Log.d("currentTime3", currentTime3 + "");
                         Bundle phoneStorageBundle = msg.getData();
                         String availableSize = phoneStorageBundle.getString(AVAILABLE_SIZE);
                         String totalSize = phoneStorageBundle.getString(TOTAL_SIZE);
                         mPhoneStorageTextView.setText(availableSize + " / " + totalSize);
+                        //long currentTime4 = System.currentTimeMillis();
+                        //Log.d("currentTime4", currentTime4 + "");
                         break;
 
                     case 2:
@@ -86,7 +91,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
 
         //启动子线程动态初始化主界面最近图片的四张展示
-        new RecentFourImagesThread().start();
+        //new RecentFourImagesThread().start();
+
+        //初始化主界面最近图片的四张展示
+        initRecentFourImages();
 
         //ToolBar的初始化操作
         initToolBar();
@@ -127,8 +135,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mClassifyAndroidLinearLayout = findViewById(R.id.classify_android_layout);
     }
 
+    //动态初始化主界面最近图片的四张展示
+    public void initRecentFourImages() {
+        List<Bitmap> recentBitmapList = new ArrayList<>();
+        Bundle recentImageBundle = new Bundle();
+        Message recentImageMessage = Message.obtain();
+        recentImageMessage.what = 2;
+        mFilePathHelper = new FilePathHelperImpl();
+        long currentTime1 = System.currentTimeMillis();
+        Log.d("currentTime1", currentTime1 + "");
+        mRecentFourImagesList = mFilePathHelper.getRecentFourImages(MainActivity.this);
+        int recentSize = mRecentFourImagesList.size();
+        if (recentSize != 0) {
+            for (int i = 0; i < recentSize; i++) {
+                Bitmap bitmap = BitmapFactory.decodeFile(mRecentFourImagesList.get(i));
+                recentBitmapList.add(bitmap);
+            }
+        }
+        recentImageBundle.putParcelable(RECENT_FIRST_IMAGE, recentBitmapList.get(0));
+        recentImageBundle.putParcelable(RECENT_SECOND_IMAGE, recentBitmapList.get(1));
+        recentImageBundle.putParcelable(RECENT_THIRD_IMAGE, recentBitmapList.get(2));
+        recentImageBundle.putParcelable(RECENT_FOURTH_IMAGE, recentBitmapList.get(3));
+        recentImageMessage.setData(recentImageBundle);
+        mHandler.sendMessage(recentImageMessage);
+        long currentTime2 = System.currentTimeMillis();
+        Log.d("currentTime2", currentTime2 + "");
+    }
+
     //动态初始化主界面最近图片的四张展示的子线程
-    private class RecentFourImagesThread extends Thread {
+    /*private class RecentFourImagesThread extends Thread {
         @Override
         public void run() {
             super.run();
@@ -137,7 +172,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Message recentImageMessage = Message.obtain();
             recentImageMessage.what = 2;
             mFilePathHelper = new FilePathHelperImpl();
+            long currentTime1 = System.currentTimeMillis();
+            Log.d("currentTime1", currentTime1 + "");
             mRecentFourImagesList = mFilePathHelper.getRecentFourImages(MainActivity.this);
+            long currentTime11 = System.currentTimeMillis();
+            Log.d("currentTime11", currentTime11 + "");
             int recentSize = mRecentFourImagesList.size();
             if (recentSize != 0) {
                 for (int i = 0; i < recentSize; i++) {
@@ -145,20 +184,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     recentBitmapList.add(bitmap);
                 }
             }
+            long currentTime111 = System.currentTimeMillis();
+            Log.d("currentTime111", currentTime111 + "");
             recentImageBundle.putParcelable(RECENT_FIRST_IMAGE, recentBitmapList.get(0));
             recentImageBundle.putParcelable(RECENT_SECOND_IMAGE, recentBitmapList.get(1));
             recentImageBundle.putParcelable(RECENT_THIRD_IMAGE, recentBitmapList.get(2));
             recentImageBundle.putParcelable(RECENT_FOURTH_IMAGE, recentBitmapList.get(3));
+            long currentTime1111 = System.currentTimeMillis();
+            Log.d("currentTime1111", currentTime1111 + "");
             recentImageMessage.setData(recentImageBundle);
             mHandler.sendMessage(recentImageMessage);
+            long currentTime2 = System.currentTimeMillis();
+            Log.d("currentTime2", currentTime2 + "");
         }
-    }
+    }*/
 
     //动态初始化phoneStorage视图的子线程
     private class PhoneStorageThread extends Thread {
         @Override
         public void run() {
             super.run();
+            //long currentTime1 = System.currentTimeMillis();
+            //Log.d("currentTime1", currentTime1 + "");
             Message phoneStorageMessage = Message.obtain();
             phoneStorageMessage.what = 1;
             mPhoneStorageSD = new PhoneStorageSDImpl(MainActivity.this);
@@ -169,6 +216,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             phoneStorageBundle.putString(TOTAL_SIZE, totalSize);
             phoneStorageMessage.setData(phoneStorageBundle);
             mHandler.sendMessage(phoneStorageMessage);
+            //long currentTime2 = System.currentTimeMillis();
+            //Log.d("currentTime2", currentTime2 + "");
         }
     }
 
