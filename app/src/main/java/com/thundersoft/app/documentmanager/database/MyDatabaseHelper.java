@@ -9,15 +9,15 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_Name = "myFile.db";
     private static final int version = 2;
-    public static final String CREATE_DOCUMENT = "create table Document ("
+    private static final String CREATE_DOCUMENT = "create table Document ("
             + "id integer primary key autoincrement, "
             + "Document_name text,"
             + "Document_Uri text)";
-    public static final String CREATE_DOWNLOAD = "create table DownLoad ("
+    private static final String CREATE_DOWNLOAD = "create table DownLoad ("
             + "id integer primary key autoincrement, "
             + "Download_name text,"
             + "Download_Uri text)";
-    public static final String CREATE_APK= "create table Apk ("
+    private static final String CREATE_APK= "create table Apk ("
             + "id integer primary key autoincrement, "
             + "Apk_name text,"
             + "Apk_Uri text)";
