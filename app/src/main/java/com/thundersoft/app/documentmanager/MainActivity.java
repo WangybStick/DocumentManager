@@ -55,10 +55,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        /*ExecutorService executorService = Executors.newSingleThreadExecutor();
         MyTask myTask = new MyTask();
         executorService.submit(myTask);
-        executorService.shutdown();
+        executorService.shutdown();*/
+        //startService(new Intent(this, MyService.class));
+        startService(new Intent(this, MyIntentService.class));
 
         mHandler = new Handler() {
             @Override
@@ -249,17 +251,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    //初始化文档文件，下载文件，APK文件到自定义数据库
-    public void initMyDataBase() {
-        mMyDataBaseManager = new MyDataBaseManager(MainActivity.this);
-        mMyDataBaseManager.initMyDataBase();
-    }
-
-    //初始化数据库任务
-    class MyTask implements Runnable {
-        @Override
-        public void run() {
-            initMyDataBase();
-        }
-    }
 }
