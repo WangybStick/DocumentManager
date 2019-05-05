@@ -40,10 +40,6 @@
             android:theme="@style/ThemeNoActionBar" />
 
         <service
-            android:name=".MyService"
-            android:enabled="true"
-            android:exported="true" />
-        <service
             android:name=".MyIntentService"
             android:exported="false"></service>
     </application>

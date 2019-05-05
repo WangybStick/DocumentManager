@@ -55,11 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*ExecutorService executorService = Executors.newSingleThreadExecutor();
-        MyTask myTask = new MyTask();
-        executorService.submit(myTask);
-        executorService.shutdown();*/
-        //startService(new Intent(this, MyService.class));
+        //初始化文档文件，下载文件，APK文件到自定义数据库
         startService(new Intent(this, MyIntentService.class));
 
         mHandler = new Handler() {
@@ -107,10 +103,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //初始化视图的点击监听
         setOnclickListener();
-
-        /*//（后台AsyncTask线程）初始化文档文件，下载文件，APK文件到自定义数据库
-        mMyAsyncTask = new MyAsyncTask();
-        mMyAsyncTask.execute();*/
 
     }
 
