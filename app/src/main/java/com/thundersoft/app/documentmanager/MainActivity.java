@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bundle recentImageBundle = new Bundle();
         Message recentImageMessage = Message.obtain();
         recentImageMessage.what = 2;
-        mFilePathHelper = new FilePathHelperImpl();
+        mFilePathHelper = FilePathHelperImpl.getSingleton();
         long currentTime1 = System.currentTimeMillis();
         Log.d("currentTime1", currentTime1 + "");
         mRecentFourImagesList = mFilePathHelper.getRecentFourImages(MainActivity.this);

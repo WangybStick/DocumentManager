@@ -46,7 +46,7 @@ public class MyDataBaseManager {
 
     //初始化数据库的三张表
     public boolean initMyDataBase() {
-        mFilePathHelper = new FilePathHelperImpl();
+        mFilePathHelper = FilePathHelperImpl.getSingleton();
         ((FilePathHelperImpl) mFilePathHelper).getAllSystemFileList(PHONE_INTERNAL_STORAGE_ROOT_DIRECTORY,
                 mContext);
         mDocumentPathList = mFilePathHelper.getAllDocumentAbsolutePath();

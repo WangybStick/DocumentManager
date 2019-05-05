@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FilePathHelperImpl implements FilePathHelper {
+    private static FilePathHelper singleton;
 
     private final static int ONE_WEEK = 7;
     private final static int ONE_MONTH = 30;
@@ -34,7 +35,7 @@ public class FilePathHelperImpl implements FilePathHelper {
     private List<String> mApkNameList;
     private List<String> mRecentFourImagesList;
 
-    public FilePathHelperImpl() {
+    private FilePathHelperImpl() {
         mRecentFourImagesList = new ArrayList<>();
         mImagePathList = new ArrayList<>();
         mImageNameList = new ArrayList<>();
@@ -48,6 +49,13 @@ public class FilePathHelperImpl implements FilePathHelper {
         mDownloadNameList = new ArrayList<>();
         mApkPathList = new ArrayList<>();
         mApkNameList = new ArrayList<>();
+    }
+
+    public static FilePathHelper getSingleton() {
+        if (singleton == null) {
+            singleton = new FilePathHelperImpl();
+        }
+        return singleton;
     }
 
     @Override

@@ -30,10 +30,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static MyDatabaseHelper getSingleton(Context context) {
         if (singleton == null) {
             singleton = new MyDatabaseHelper(context);
-            return singleton;
-        } else {
-            return singleton;
         }
+        return singleton;
     }
 
     @Override

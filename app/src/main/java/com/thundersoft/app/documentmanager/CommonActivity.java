@@ -151,7 +151,7 @@ public class CommonActivity extends AppCompatActivity {
         List<String> dataPathList = new ArrayList<>();
         mMyDataBaseManager = new MyDataBaseManager(CommonActivity.this);
         mSQLiteDatabase = mMyDataBaseManager.getmSQLiteDatabase();
-        mFilePathHelper = new FilePathHelperImpl();
+        mFilePathHelper = FilePathHelperImpl.getSingleton();
         mDataManipulate = new DataManipulateImpl(mFilePathHelper, mSQLiteDatabase, CommonActivity.this);
         if (mIntentType.equals(getString(R.string.classify_picture))) {
             mCommonTextView.setText(getString(R.string.path_image));

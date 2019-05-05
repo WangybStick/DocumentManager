@@ -157,7 +157,7 @@ public class RecentActivity extends AppCompatActivity {
     //初始化FileListRecyclerView的数据
     public void initFileListRecyclerViewData(int recentTime) {
         List<String> dataPathList;
-        mFilePathHelper = new FilePathHelperImpl();
+        mFilePathHelper = FilePathHelperImpl.getSingleton();
         dataPathList = mFilePathHelper.getRecentImage(RecentActivity.this, recentTime);
         if (dataPathList.size() != 0) {
             String filePath = dataPathList.get(0);
