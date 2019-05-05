@@ -33,12 +33,10 @@ public class FileOpenImpl implements FileOpen {
             return getImageFileIntent(filePath);
         }else if(end.equals("apk")){
             return getApkFileIntent(filePath);
-        }else if(end.equals("ppt")){
+        }else if(end.equals("ppt")||end.equals("doc")){
             return getPptFileIntent(filePath);
         }else if(end.equals("xls")){
             return getExcelFileIntent(filePath);
-        }else if(end.equals("doc")){
-            return getWordFileIntent(filePath);
         }else if(end.equals("pdf")){
             return getPdfFileIntent(filePath);
         }else if(end.equals("chm")){
@@ -131,17 +129,6 @@ public class FileOpenImpl implements FileOpen {
         File file = new File(param );
         Uri uri = FileProvider.getUriForFile(mContext,mContext.getApplicationContext().getPackageName() + ".provider", file);
         intent.setDataAndType(uri, "application/vnd.ms-excel");
-        return intent;
-    }
-
-    //Android获取一个用于打开Word文件的intent
-    public Intent getWordFileIntent( String param ){
-
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        File file = new File(param );
-        Uri uri = FileProvider.getUriForFile(mContext,mContext.getApplicationContext().getPackageName() + ".provider", file);        intent.setDataAndType(uri, "application/msword");
         return intent;
     }
 

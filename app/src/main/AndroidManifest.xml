@@ -32,10 +32,13 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".CommonActivity"
-                  android:theme="@style/ThemeNoActionBar"/>
-        <activity android:name=".RecentActivity"
-                  android:theme="@style/ThemeNoActionBar"/>
+        <activity
+            android:name=".CommonActivity"
+            android:theme="@style/ThemeNoActionBar" />
+        <activity
+            android:name=".RecentActivity"
+            android:theme="@style/ThemeNoActionBar" />
+
     </application>
 
 </manifest>

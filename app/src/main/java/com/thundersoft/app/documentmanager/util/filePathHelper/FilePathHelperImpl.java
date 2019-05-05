@@ -3,8 +3,13 @@ package com.thundersoft.app.documentmanager.util.filePathHelper;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
+
 import com.thundersoft.app.documentmanager.util.mimeTypeMatch.MimeTypeMatch;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -196,10 +201,6 @@ public class FilePathHelperImpl implements FilePathHelper {
                 if(files.isHidden()) {
                     continue;
                 }
-                else if(files.getAbsolutePath().startsWith(context.getExternalFilesDir(null)
-                        .getParentFile().getParent())) {
-                    continue;
-                }
                 else if(files.isDirectory()) {
                     getAllSystemFileList(files.getAbsolutePath(),context);
                 }
@@ -251,6 +252,5 @@ public class FilePathHelperImpl implements FilePathHelper {
         }
         return false;
     }
-
 
 }

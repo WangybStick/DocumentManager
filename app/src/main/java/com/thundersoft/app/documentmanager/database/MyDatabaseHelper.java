@@ -9,18 +9,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_Name = "myFile.db";
     private static final int version = 2;
-    /*public static final String CREATE_IMAGE = "create table Image ("
-            + "id integer primary key autoincrement, "
-            + "Image_name text,"
-            + "Image_Uri text)";
-    public static final String CREATE_VIDEO = "create table Video ("
-            + "id integer primary key autoincrement, "
-            + "Video_name text,"
-            + "Video_Uri text)";
-    public static final String CREATE_AUDIO = "create table Audio ("
-            + "id integer primary key autoincrement, "
-            + "Audio_name text,"
-            + "Audio_Uri text)";*/
     public static final String CREATE_DOCUMENT = "create table Document ("
             + "id integer primary key autoincrement, "
             + "Document_name text,"

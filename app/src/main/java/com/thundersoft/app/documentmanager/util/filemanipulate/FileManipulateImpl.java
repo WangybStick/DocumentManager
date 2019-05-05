@@ -4,9 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.widget.Toast;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -129,6 +126,17 @@ public class FileManipulateImpl implements FileManipulate{
         else
         {
             Toast.makeText(context, "属性获取失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public boolean renameFile(String filePath, String newName) {
+        if ("".equals(newName)) {
+            return false;
+        } else {
+            String newPath = filePath.substring(0, filePath.lastIndexOf("/") + 1);
+            File file = new File(newPath + newName);
+            return new File(filePath).renameTo(file);
         }
     }
 }

@@ -11,4 +11,15 @@
     <string name="recent_oneMonth">最近一个月</string>
     <string name="recent_threeMonth">最近三个月</string>
     <string name="recent_oneYear">最近一年</string>
+    <string name="path_image"><![CDATA[我的文件 > 图片]]></string>
+    <string name="path_audio"><![CDATA[我的文件 > 音频]]></string>
+    <string name="path_video"><![CDATA[我的文件 > 视频]]></string>
+    <string name="path_document"><![CDATA[我的文件 > 文件]]></string>
+    <string name="path_download"><![CDATA[我的文件 > 下载]]></string>
+    <string name="path_apk"><![CDATA[我的文件 > apk]]></string>
+    <string name="rename">重命名</string>
+    <string name="delete">删除</string>
+    <string name="find_file_property">查看文件属性</string>
+    <string name="remove_success">删除成功</string>
+    <string name="aletDialog_title">文件操作</string>
 </resources>

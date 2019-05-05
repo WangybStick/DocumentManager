@@ -1,5 +1,6 @@
 package com.thundersoft.app.documentmanager;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -62,13 +63,11 @@ public class CommonActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    //initFileListRecyclerViewClick();
-                    onStart();
+                    initFileListRecyclerViewClick();
                     break;
 
                 case 2:
-                    //initFileListRecyclerViewClick();
-                    onStart();
+                    initFileListRecyclerViewClick();
                     break;
             }
         }
@@ -145,6 +144,7 @@ public class CommonActivity extends AppCompatActivity {
     }
 
     //初始化FileListRecyclerView的数据
+    @SuppressLint("SetTextI18n")
     public void initFileListRecyclerViewData() {
         Intent intent = getIntent();
         mIntentType = intent.getType();
@@ -154,22 +154,22 @@ public class CommonActivity extends AppCompatActivity {
         mFilePathHelper = new FilePathHelperImpl();
         mDataManipulate = new DataManipulateImpl(mFilePathHelper, mSQLiteDatabase, CommonActivity.this);
         if (mIntentType.equals(getString(R.string.classify_picture))) {
-            mCommonTextView.setText("我的文件 > 图片");
+            mCommonTextView.setText(getString(R.string.path_image));
             dataPathList = mDataManipulate.queryImagePath();
         } else if (mIntentType.equals(getString(R.string.classify_video))) {
-            mCommonTextView.setText("我的文件 > 音频");
+            mCommonTextView.setText(getString(R.string.path_audio));
             dataPathList = mDataManipulate.queryAudioPath();
         } else if (mIntentType.equals(getString(R.string.classify_audio))) {
-            mCommonTextView.setText("我的文件 > 视频");
+            mCommonTextView.setText(getString(R.string.path_video));
             dataPathList = mDataManipulate.queryVideoPath();
         } else if (mIntentType.equals(getString(R.string.classify_document))) {
-            mCommonTextView.setText("我的文件 > 文件");
+            mCommonTextView.setText(getString(R.string.path_document));
             dataPathList=  mDataManipulate.queryDocumentPath();
         } else if (mIntentType.equals(getString(R.string.classify_download))) {
-            mCommonTextView.setText("我的文件 > 下载");
+            mCommonTextView.setText(getString(R.string.path_download));
             dataPathList=  mDataManipulate.queryDownloadPath();
         } else if (mIntentType.equals(getString(R.string.classify_android))) {
-            mCommonTextView.setText("我的文件 > apk");
+            mCommonTextView.setText(getString(R.string.path_apk));
             dataPathList =  mDataManipulate.queryApkPath();
         }
         if (dataPathList.size() != 0) {
@@ -182,7 +182,6 @@ public class CommonActivity extends AppCompatActivity {
                 File file = new File(dataPath);
                 String fileName = file.getName();
                 String absolutePath = file.getAbsolutePath();
-                Log.d("fileName", fileName);
                 mFileListRecyclerViewDataList.add(new CommonBean(icon, fileName, absolutePath));
             }
         }
@@ -210,7 +209,8 @@ public class CommonActivity extends AppCompatActivity {
             }
         });
         mFileListAdapter.setOnItemLongListener(new FileListAdapter.OnRecyclerViewItemLongListener() {
-            String[] fileOpItemStr = {"重命名","删除","查看文件属性"};
+            String[] fileOpItemStr = {getString(R.string.rename),getString(R.string.delete),
+                    getString(R.string.find_file_property)};
             List<String> stringList = new ArrayList<>();
             FileManipulate mFileManipulate = new FileManipulateImpl();
             @Override
@@ -222,7 +222,7 @@ public class CommonActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which){
                             case 0:
-                                rename(filePath,position);
+                                rename(filePath, position);
                                 break;
                             case 1:
                                 if (mIntentType.equals(getString(R.string.classify_picture))) {
@@ -240,7 +240,7 @@ public class CommonActivity extends AppCompatActivity {
                                 }
                                 mFileListAdapter.removeItem(position);
                                 mFileManipulate.deleteFile(filePath);
-                                Toast.makeText(CommonActivity.this, "删除成功",
+                                Toast.makeText(CommonActivity.this, getString(R.string.remove_success),
                                         Toast.LENGTH_LONG).show();
                                 break;
                             case 2:
@@ -251,14 +251,8 @@ public class CommonActivity extends AppCompatActivity {
                         }
                     }
                 };
-                DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-
-                    }
-                };
                 new AlertDialog.Builder(CommonActivity.this)
-                        .setTitle("文件操作")
+                        .setTitle(R.string.aletDialog_title)
                         .setItems(fileOpItemStr, fileOpDialogOnClickListener).show();
             }
         });
@@ -297,6 +291,9 @@ public class CommonActivity extends AppCompatActivity {
                 } else if (mIntentType.equals(getString(R.string.classify_android))) {
                     mDataManipulate.renameApkItemFromMediaStore(filePath, newName);
                 }
+                FileManipulate mFileManipulate = new FileManipulateImpl();
+                mFileManipulate.renameFile(filePath, newName);
+                alertDialog.dismiss();
             }
         });
         //重命名弹出框取消按钮
@@ -308,9 +305,4 @@ public class CommonActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        initFileListRecyclerViewClick();
-    }
 }

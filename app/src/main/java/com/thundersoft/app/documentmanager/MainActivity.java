@@ -3,7 +3,6 @@ package com.thundersoft.app.documentmanager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +20,8 @@ import com.thundersoft.app.documentmanager.util.phoneStorageSD.PhoneStorageSD;
 import com.thundersoft.app.documentmanager.util.phoneStorageSD.PhoneStorageSDImpl;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mPhoneStorageTextView;
     private PhoneStorageSD mPhoneStorageSD;
     private MyDataBaseManager mMyDataBaseManager;
-    private MyAsyncTask mMyAsyncTask;
     private FilePathHelper mFilePathHelper;
     private List<String> mRecentFourImagesList;
     private Handler mHandler;
@@ -55,7 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        MyTask myTask = new MyTask();
+        executorService.submit(myTask);
+        executorService.shutdown();
 
         mHandler = new Handler() {
             @Override
@@ -103,9 +106,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //初始化视图的点击监听
         setOnclickListener();
 
-        //（后台AsyncTask线程）初始化文档文件，下载文件，APK文件到自定义数据库
+        /*//（后台AsyncTask线程）初始化文档文件，下载文件，APK文件到自定义数据库
         mMyAsyncTask = new MyAsyncTask();
-        mMyAsyncTask.execute();
+        mMyAsyncTask.execute();*/
 
     }
 
@@ -252,11 +255,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMyDataBaseManager.initMyDataBase();
     }
 
-    private class MyAsyncTask extends AsyncTask<Void, Void, Boolean>{
+    //初始化数据库任务
+    class MyTask implements Runnable {
         @Override
-        protected Boolean doInBackground(Void... voids) {
+        public void run() {
             initMyDataBase();
-            return true;
         }
     }
 }

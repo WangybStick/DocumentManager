@@ -9,6 +9,9 @@ public interface FileManipulate {
     //删除对应文件
     boolean deleteFile(String filePath);
 
+    //对文件进行重命名
+    boolean renameFile(String filePath, String newName);
+
     //得到文件属性信息
     List<String> getFileAttribute(String filePath);
 
