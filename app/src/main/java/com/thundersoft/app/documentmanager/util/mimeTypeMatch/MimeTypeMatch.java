@@ -4,32 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class MimeTypeMatch {
-
-    /*public static final String "application/x-7z-compressed"
-    public static final String "7z"
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String
-    public static final String*/
-
-
-
-
-
-
     public static final String MIME_TYPE_AUDIO = "audio";
     public static final String MIME_TYPE_VIDEO = "video";
     public static final String MIME_TYPE_IMAGE = "image";
@@ -39,11 +13,6 @@ public final class MimeTypeMatch {
     public static final Map<String, String> sMimeTypeMap = new HashMap<>();
 
     static {
-        /*
-         * application/x-7z-compressed application/zip application/rar
-         * application/x-tar application/x-iso9660-image
-         * appication/x-compress application/x-gzip application/x-gtar
-         */
         add("application/x-7z-compressed", "7z");
         add("application/rar", "rar");
         add("application/zip", "zip");
@@ -57,7 +26,6 @@ public final class MimeTypeMatch {
         add("application/x-gtar", "taz");
     }
 
-    //???
     static {
         add("audio/3gpp", "3gpp");
         add("audio/amr", "amr");
@@ -91,7 +59,6 @@ public final class MimeTypeMatch {
         add("audio/x-qcp", "qcp");
     }
 
-    //??
     static {
         add("image/bmp", "bmp");
         add("image/gif", "gif");
@@ -136,7 +103,6 @@ public final class MimeTypeMatch {
         add("model/mesh", "silo");
     }
 
-    //???
     static {
         add("text/plain", "txt");
         add("text/plain", "text");
@@ -150,10 +116,9 @@ public final class MimeTypeMatch {
         add("text/h323", "323");
         add("text/iuls", "uls");
         add("text/mathml", "mml");
-        // add ".txt" first so it will be the default for ExtensionFromMimeType
         add("text/plain", "asc");
         add("text/plain", "diff");
-        add("text/plain", "po"); // reserve "pot" for vnd.ms-powerpoint
+        add("text/plain", "po");
         add("text/richtext", "rtx");
         add("text/rtf", "rtf");
         add("text/texmacs", "ts");
@@ -191,7 +156,6 @@ public final class MimeTypeMatch {
         add("text/x-vcard", "vcf");
     }
 
-    //???
     static {
         add("video/3gpp", "3gpp");
         add("video/3gpp", "3gp");
@@ -227,24 +191,7 @@ public final class MimeTypeMatch {
         add("x-epoc/x-sisx-app", "sisx");
     }
 
-    //???
     static {
-        /**
-         * text/plain application/msword
-         * application/vnd.openxmlformats-officedocument
-         * .wordprocessingml.document
-         * application/vnd.openxmlformats-officedocument
-         * .wordprocessingml.template application/vnd.ms-excel
-         * application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-         * application/vnd.openxmlformats-officedocument.spreadsheetml.template
-         * application/vnd.ms-powerpoint
-         * application/vnd.openxmlformats-officedocument
-         * .presentationml.presentation
-         * application/vnd.openxmlformats-officedocument.presentationml.template
-         * application
-         * /vnd.openxmlformats-officedocument.presentationml.slideshow
-         * application/pdf
-         */
         add("application/msword", "doc");
         add("application/msword", "dot");
         add("application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -272,9 +219,7 @@ public final class MimeTypeMatch {
         add("application/pdf", "pdf");
     }
 
-    //?????
     static {
-        // 安装�? apk
         add("application/vnd.android.package-archive", "apk");
     }
 

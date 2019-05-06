@@ -75,8 +75,6 @@ public class FileOpenImpl implements FileOpen {
 
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.putExtra("oneshot", 0);
-        intent.putExtra("configchange", 0);
         File file = new File(param );
         Uri uri = FileProvider.getUriForFile(mContext,mContext.getApplicationContext().getPackageName() + ".provider", file);
         intent.setDataAndType(uri, "video/*");
@@ -88,8 +86,6 @@ public class FileOpenImpl implements FileOpen {
 
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.putExtra("oneshot", 0);
-        intent.putExtra("configchange", 0);
         File file = new File(param );
         Uri uri = FileProvider.getUriForFile(mContext,mContext.getApplicationContext().getPackageName() + ".provider", file);
         intent.setDataAndType(uri, "audio/*");
@@ -102,7 +98,6 @@ public class FileOpenImpl implements FileOpen {
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.addCategory("android.intent.category.DEFAULT");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         File file = new File(param);
         Uri uri = FileProvider.getUriForFile(mContext,mContext.getApplicationContext().getPackageName() + ".provider", file);
         intent.setDataAndType(uri, "image/*");
