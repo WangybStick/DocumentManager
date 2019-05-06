@@ -34,12 +34,7 @@ public class FileBitmapHelperImpl implements FileBitmapHelper {
                     bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.video);
                 }
                 else if (type.equals(MimeTypeMatch.MIME_TYPE_IMAGE)) {
-                    if (isDefault) {
                         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.image);
-                    }
-                    else {
-                        bitmap = getImageThumbnail(context,filePath);
-                    }
                 }
                 else if (type.equals(MimeTypeMatch.MIME_TYPE_DOCUMENT)) {
                     if (isDefault) {
@@ -53,12 +48,7 @@ public class FileBitmapHelperImpl implements FileBitmapHelper {
                     bitmap=BitmapFactory.decodeResource(context.getResources(), R.drawable.archive_yellow);
                 }
                 else if (type.equals(MimeTypeMatch.MIME_TYPE_APK)) {
-                    if (isDefault) {
                         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.apk);
-                    }
-                    else {
-                        bitmap = getApkIcon(context,filePath);
-                    }
                 }
             }
             else {
@@ -117,57 +107,4 @@ public class FileBitmapHelperImpl implements FileBitmapHelper {
         return bitmap;
     }
 
-    private Bitmap getApkIcon(Context context,String filePath) {
-        Drawable drawable = null;
-        PackageManager pm = context.getPackageManager();
-        PackageInfo info = pm.getPackageArchiveInfo(filePath, PackageManager.GET_ACTIVITIES);
-        if (info!=null) {
-            ApplicationInfo appInfo = info.applicationInfo;
-            appInfo.sourceDir = filePath;
-            appInfo.publicSourceDir = filePath;
-            try {
-                drawable = appInfo.loadIcon(pm);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-        Bitmap bitmap = bitmapDrawable.getBitmap();
-        if (bitmap==null) {
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.apk);
-        }
-        return bitmap;
-    }
-
-    private Bitmap getImageThumbnail(Context context,String filePath) {
-        Cursor cursor = context.getContentResolver().query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                new String[] { MediaStore.Images.Media._ID },
-                MediaStore.Images.Media.DATA + "=?",
-                new String[] { filePath }, null);
-        int id = 0;
-        while (cursor.moveToNext()) {
-            id = cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media._ID));
-        }
-        cursor.close();
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        Bitmap bitmap = MediaStore.Images.Thumbnails.getThumbnail(
-                context.getContentResolver(), id,
-                MediaStore.Images.Thumbnails.MINI_KIND, options);
-        if (bitmap != null) {
-            return bitmap;
-        }
-        options.inJustDecodeBounds = true;
-        int height = options.outHeight/ 8;
-        int width = options.outWidth/ 8;
-        options.inSampleSize = 8;
-        options.inJustDecodeBounds = false;
-        bitmap = BitmapFactory.decodeFile(filePath, options);
-        bitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height,
-                ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
-        if (bitmap!=null) {
-            return bitmap;
-        }
-        return BitmapFactory.decodeResource(context.getResources(), R.drawable.image);
-    }
 }
